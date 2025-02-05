@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+  {% block css %}
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  {% endblock css %}
+
+  {% block content %}
+ 
+
+    {% include 'inlines/header-pages.html' %}
+
+
+ <!-- {# <script src="https://js.paystack.co/v1/inline.js"></script> #} -->
+
+	<div class="services section pricing" id="services">
+		<div class="container">
+	        <div class="row text-center">
+	            <div class="col-sm-6 offset-sm-3">
+	                <div class="heading-section">
+	                    <h2 class="text-orange pb-5"><span>{{ payment.get_category_display }} Payment</span></h2>
+	                    	<div class="table-responsive ">
+												  <table class="table table-bordered">
+												  	<tr class="left">
+													    <td class="font-weight-bold">{{ payment.get_category_display }}:</td>
+													    <td>{{ payment.plan_type|title }} </td>
+													  </tr>
+												  	<tr>
+													    <td class="font-weight-bold">Duration:</td>
+													    <td>{{ payment.duration }} months</td>
+													  </tr>
+														{% if payment.coupon %}
+														<div class="text-sm">
+													  	<tr class="text-sm">
+														    <td class="font-weight-bold">Subtotal:</td>
+														    <td>&#8358;{{ payment.amount|floatformat:"0"|intcomma }}</td>
+														  </tr>
+													  	<tr class="small">
+														    <td class="">Coupon:</td>
+														    <td class="text-muted">{{ payment.coupon.code }} <br>({{ payment.coupon.discount|intcomma }} Off)</td>
+														  </tr>
+													  	<!-- <tr class="small">
+														    <td class="">Discount:</td>
+														    <td class="text-muted">- &#8358;{{ payment.amount|intcomma }}</td>
+														  </tr> -->
+														</div>
+														{% endif %}
+												  	<tr class="lead">
+													    <td class="font-weight-bold text-uppercase">Total:</td>
+													    <td class="font-weight-bold">&#8358;{{ payment.get_amount_payable|floatformat:"0"|intcomma }}</td>
+													  </tr>
+												  </table>
+												</div> 
+												<br>
+													
+												<div class="mb-4">
+													<!-- <p>Apply a coupon:</p> -->
+													<form action="{% url 'coupon:apply' payment.id %}" method="post">
+														{% csrf_token %}
+														{{ coupon_apply_form }}
+														<input class="btn-secondary btn-sm" type="submit" value="{% trans 'Apply' %}">
+													</form>
+													{% if coupon_message %}
+														<p class="text-primary py-0">{{ coupon_message }}</p>
+													{% endif %}
+												</div>
+
+											<br>
+											<button onclick="payWithPaystack()" class="btn btn-lg btn-orange px-5"><span class="lead text-sm font-weight-bold">Proceed to Pay</span></button>
+	                </div>
+	            </div>
+	        </div>
+		</div>
+	</div>
+
+	<script>
+		function payWithPaystack() {
+			let currency = "NGN";
+			let plan = "";
+			let ref = "{{ payment.ref }}";
+			let amount = "{{ payment.get_amount_payable }}";
+			let obj = {
+				key: "{{ paystack_pub_key }}",
+				email: "{{ payment.email }}",
+				amount: "{{ amount_value }}",
+				ref: ref,
+				callback: function (response) {
+					window.location.href = "{% url 'payments:payment_verify' payment.ref %}";
+				},
+			};
+			if (Boolean(currency)) {
+				obj.currency = currency.toUpperCase();
+			}
+			if (Boolean(plan)) {
+				obj.plan - plan;
+			}
+
+			var handler = PaystackPop.setup(obj);
+			handler.openIframe();
+		}
+	</script>
+
+
+
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+	
+
+
+
+
+	

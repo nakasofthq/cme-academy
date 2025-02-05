@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+
+{% block content %}
+
+
+
+  {% include 'inlines/header-pages.html' %}
+
+
+
+
+	<div class="services section pricing" id="services">
+		<div class="container">
+      <div class="row text-center">
+        <div class="col-md-12 my-4">
+            <div class="section-heading">
+                <h2><span>Pick the right plan for you</span></h2>
+                <p class="lead text-dark">It's completely free to get started. We only charge a small fee for our advance plans. </p>
+            </div>
+        </div>
+      </div>
+    	<div class="row">
+			{% for object in object_list %}
+				<!-- Basic Tier -->
+				<div class="col-lg-4 col-md-4 py-2">
+					<div class="card mb-5 pb-4">
+						<div class="card-body">
+							<h5 class="card-title text-uppercase text-center text-orange font-weight-bold py-3">{{ object.get_title_display }}</h5>
+							<p class="card-text">{{ object.desc | linebreaks }}</p>
+							{% if object.title == 'pro'  %}
+							<h6 class="card-price text-center text-dark">&#8358;{{ object.price|floatformat:"0"|intcomma }}<span class="period">/year</span></h6>
+							{% else %}
+							<h6 class="card-price text-center text-dark">&#8358;{{ object.price|floatformat:"0"|intcomma }}<span class="period">/month</span></h6>
+							{% endif %}
+							<hr>
+							{% if object.title == 'basic' %}
+							<ul class="fa-ul">
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Introduction</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Cryptocurrency and its history</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>A to Z Crypto Terminology and Language</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Most Important to know</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>The link for the creating of your ByBit account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to verify your ByBit account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to fund your ByBit account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to start trading Futures on ByBit</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to withdraw from ByBit to your bank</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>The link for the creating of your KuCoin account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to verify your KuCoin account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to fund your KuCoin account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to withdraw from KuCoin to your bank account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to send USDT from one exchange to another</li>
+							  <li><span class="fa-li"><i class="fa fa-star"></i></span><span class="text-uppercase font-weight-bold">Bonus</span></li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How not to loss your profit on Binance</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to set profitable stop loss and take profit</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to recover your losses when trading</li>
+							</ul>
+							{% elif object.title == 'advance' %}
+							<ul class="fa-ul">
+							  <li class="font-weight-bold"><span class="fa-li"><i class="fa fa-check"></i></span>Everything in Basic +</li>
+							  <!-- <hr> -->
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Introduction to fundamental analysis</li>
+							  <!-- <li><span class="fa-li"><i class="fa fa-check"></i></span>What is fundamental analysis</li> -->
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to do fundamental analysis</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to spot low cap coin</li>
+							  <li><span class="fa-li"><i class="fa fa-star"></i></span><span class="text-uppercase font-weight-bold">Bonus</span></li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Introduction to Shitcoin trader</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>The bot link for Shitcoin trading</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to set up your Shitcoin trading account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to fund your Shitcoin trading account</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to buy Shitcoin</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to sell your Shitcoin</li>
+							</ul>
+							{% elif object.title == 'pro' %}
+							<ul class="fa-ul">
+							  <li class="font-weight-bold"><span class="fa-li"><i class="fa fa-check"></i></span>Everything in Basic +</li>
+							  <li class="font-weight-bold"><span class="fa-li"><i class="fa fa-check"></i></span>Everything in Standard +</li>
+							  <!-- <hr> -->
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Introduction to Technical Analysis</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to setup and use trading views</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Candlestick Mastery</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Candlestick Holy Bible</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Introduce to trendline</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Support and resistance pattern</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>How to analysis trendline</li>
+							  <li><span class="fa-li"><i class="fa fa-star"></i></span><span class="text-uppercase font-weight-bold">Bonus</span></li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Trade Fakeout strategy</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>FVG strategy</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Life time signals group</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Life time support group</li>
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Personal number</li>
+							</ul>
+							{% else %}
+							<ul class="fa-ul">
+							  <li><span class="fa-li"><i class="fa fa-check"></i></span>Others</li>
+							</ul>
+							{% endif %}
+							<br>
+							{% if object.title == current_plan.slug %}
+							<center class="small text-success text-uppercase">Your current plan</center>
+							{% elif object.title == 'pro'  %}
+							<form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+								<input type="hidden" name="category" value="{{ category }}">
+								<input type="hidden" name="plan_type" value="{{ object.title }}">
+								<input type="hidden" name="plan_price" value="14166.7">
+								<!-- <select class="" id="duration" name="duration"> -->
+								<select class="form-control text-center" name="plan_duration" required style="width: 100%;">
+									<!-- <option class="text-default" value=><i>-- Select Duration --</i></option> -->
+									<option value=12>1 Year</option>
+								</select>
+								<br>
+								<button type="submit" class="btn btn-block btn-sm btn-orange text-uppercase">Select</button>
+							</form>
+							{% else %}
+							<form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+								<input type="hidden" name="category" value="{{ category }}">
+								<input type="hidden" name="plan_type" value="{{ object.title }}">
+								<input type="hidden" name="plan_price" value="{{ object.price }}">
+								<!-- <select class="" id="duration" name="duration"> -->
+								<select class="form-control text-center" name="plan_duration" required style="width: 100%;">
+									<option class="text-default" value=><i>-- Select Duration --</i></option>
+                  <option value=1>Monthly</option>
+                  <option value=3>Quarterly</option>
+                  <option value=6>Biannually</option>
+                  <option value=12>Yearly</option>
+                </select>
+								<br>
+								<button type="submit" class="btn btn-block btn-sm btn-orange text-uppercase">Select</button>
+							</form>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+      </div>
+		</div>
+	</div>
+
+
+
+
+
+  
+  {% include 'inlines/about.html' %}
+
+
+  {% include 'inlines/footer.html' %}
+
+
+
+{% endblock content %}
+	
+
+

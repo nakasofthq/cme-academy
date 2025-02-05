@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+  {% block content %}
+ 
+ 
+    
+    {% include 'inlines/header-pages.html' %}
+
+
+    
+    <div class="wrapper vh-100">
+      <div class="align-items-center h-100 d-flex mx-auto">
+        <div class="mx-auto text-center">
+          <h1 class="display-1 m-0 font-weight-bold text-muted" style="font-size:120px;">408</h1>
+          <h1 class="mb-4 text-muted font-weight-bold">OOPS!</h1>
+          <h6 class="mb-4 text-muted">Request Timeout.</h6>
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'dashboard:home' %}" class="btn btn-lg btn-orange px-4"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+          {% else %}
+          <a href="{% url 'home' %}" class="btn btn-lg btn-orange px-4"><i class="fa fa-arrow-left"></i> Back to Home</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+
+
+

@@ -1,0 +1,90 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <h3>FAQs</h3>
+        <p class="text-dark lead">Frequency Asked Questions?</p>        
+        <div class="row my-4">
+          <div class="col-md-12">
+            <div class="accordion w-100" id="accordion1">
+              <div class="card shadow">
+                <div class="card-header" id="heading1">
+                  <a role="button" href="#collapse1" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                    <h4 class="h6 text-orange">What is Cryptocurrency?</h4>
+                  </a>
+                </div>
+                <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordion1">
+                  <div class="card-body"> Cryptocurrency is a virtual form of currency that is based on Blockchain technology and is not controlled by any government. Examples of cryptocurrency include Bitcoin, Ethereum, and many others, each with unique features and purposes within the digital financial landscape. </div>
+                </div>
+              </div>
+              <div class="card shadow">
+                <div class="card-header" id="heading2">
+                  <a role="button" href="#collapse2" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                    <h4 class="h6 text-orange">What is the uses of Cryptocurrency?</h4>
+                  </a>
+                </div>
+                <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion1">
+                  <div class="card-body"> Cryptocurrency is a digital currency for secure, decentralised transactions, enabling swift online payments. It's used for investments and ICO fundraising and as a medium for diverse financial transactions, eliminating traditional banking intermediaries for seamless global transactions and investments.</div>
+                </div>
+              </div>
+              <div class="card shadow">
+                <div class="card-header" id="heading3">
+                  <a role="button" href="#collapse3" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    <h4 class="h6 text-orange">Is this course suitable for both short-term and long-term Cryptocurrency Trading?</h4>
+                  </a>
+                </div>
+                <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordion1">
+                  <div class="card-body"> This course covers comprehensive trading strategies and principles applicable to various trading durations, addressing both short-term trading, which involves taking advantage of price fluctuations within a short period, and long-term trading, which focuses on holding assets for an extended duration to benefit from potential market growth. </div>
+                </div>
+              </div>
+              <div class="card shadow">
+                <div class="card-header" id="heading4">
+                  <a role="button" href="#collapse3" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    <h4 class="h6 text-orange">What are the benefits of taking this Cryptocurrency Trading Course?</h4>
+                  </a>
+                </div>
+                <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordion1">
+                  <div class="card-body"> This course offers enriched market insights, skill enhancement in trading strategies and risk management, and proficient knowledge of market trends. It equips individuals with practical skills for informed and effective cryptocurrency trading. </div>
+                </div>
+              </div>
+              <div class="card shadow">
+                <div class="card-header" id="heading5">
+                  <a role="button" href="#collapse5" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    <h4 class="h6 text-orange">Will I receive a certificate upon completing the Cryptocurrency Trading Certification Course?</h4>
+                  </a>
+                </div>
+                <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordion1">
+                  <div class="card-body"> Upon course completion, delegates will receive a certificate validating the skills gained through this course. </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-5 pt-2 text-center">
+          <div class="col-12">  
+          <p class="h5 text-muted mb-4">Still didn't find what you are looking for?</p>            
+            <a href="{% url 'dashboard:contact' %}" class="btn btn-lg btn-outline-secondary px-5"> Contact Help Centre </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endblock content %}
+
+
+

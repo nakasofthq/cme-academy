@@ -1,0 +1,62 @@
+{% load static %}
+
+
+ 
+  {% include 'inlines/navbar.html' %}
+  
+  
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <span class="category">Our Courses</span>
+                <h2>Learn, Trade, and Earn.</h2>
+                <p>Accelerate your trading journey with CME Academy's in-depth guides, practical tips, and market updates!</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="{% url 'plans:list' %}">Get Started <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                  <!-- <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="item item-2">
+              <div class="header-text">
+                <span class="category">Best Result</span>
+                <h2>Get the best result out of your effort</h2>
+                <p>The future belongs to the people who act, the learners of REAL skills that matter here and now.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="{% url 'plans:list' %}">Get Started <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                  <!-- <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="item item-3">
+              <div class="header-text">
+                <span class="category">Online Learning</span>
+                <h2>Learning helps you save the time</h2>
+                <p>Our Crypto education is fun and easy to understand. Ramp up your knowledge and track your progress along the way!</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="{% url 'plans:list' %}">Get Started <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                  <!-- <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

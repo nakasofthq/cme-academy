@@ -1,0 +1,195 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CME | Register</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'registration/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'registration/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'registration/dist/css/adminlte.min.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box pb-5">
+  {% include 'inlines/messages.html' %}
+  <div class="register-logo pt-4 mt-5">
+    <!-- <a href="{% url 'home' %}"><img src="{% static 'registration/dist/img/logo.png' %}" height="60" alt="logo" /></a> -->
+    <a href="{% url 'home' %}"><h1 class="text-orange">CME</h1></a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <h5 class="text-center">Registration Form</h5>
+      <br>
+      {% if form.non_field_errors %}
+        <div class="small text-danger"> {{ form.non_field_errors }}</div>
+      {% endif %}
+
+      {% comment %}
+      {% for msg in message %}
+        <script>
+            window.alert(msg)
+        </script>
+      {% endfor %}
+      {% endcomment %}
+
+      <form action="." method="POST">{% csrf_token %}
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" placeholder="Username" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user-circle"></span>
+              </div>
+            </div>
+          </div>
+          <!-- <small id="username" class="form-text text-muted"><small>This can only be changed once in awhile</small></small> -->
+          <small id="username" class="form-text text-muted"><small>This cannot be changed after registration</small></small>
+          <small class="text-danger">{{ form.username.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="first_name" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}" placeholder="Firstname" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.firstname.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="last_name" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}" placeholder="Surname" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.lastname.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="phone" value="{% if form.phone.value %}{{ form.phone.value }}{% endif %}" placeholder="Phone number" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.phone.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="email" class="form-control" name="email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}" placeholder="Email" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.email.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="form-group">
+            <!-- <label for="inputState">State</label> -->
+            <select id="inputState" name="gender" class="form-control" required>
+              <option value="">Select gender</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+          <small class="text-danger">{{ form.gender.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="password" class="form-control" name="password1" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}" placeholder="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.password1.errors }}</small>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="password" class="form-control" name="password2" value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}" placeholder="Confirm password" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.password2.errors }}</small>
+        </div>
+
+        {% if ref %}
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="referer_code" value="{% if form.referer_code.value %}{{ form.referer_code.value }}{% endif %}" placeholder="Referer Code" disabled>
+            <input type="text" class="form-control" name="referer_code" value="{% if form.referer_code.value %}{{ form.referer_code.value }}{% endif %}" placeholder="Referer Code" hidden>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user-plus"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.referer_code.errors }}</small>
+        </div>
+        {% else %}        
+        <div class="mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" name="referer_code" value="{% if form.referer_code.value %}{{ form.referer_code.value }}{% endif %}" placeholder="Referer Code">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user-plus"></span>
+              </div>
+            </div>
+          </div>
+          <small class="text-danger">{{ form.referer_code.errors }}</small>
+        </div>
+        {% endif %}
+
+          
+        <div class="row">
+          <div class="col-12">
+            <div class="icheck-primary small text-center mt-3">
+              <p>By registering you are agreeing to our <a href="{% url 'terms' %}" target="_blank" class="text-orange">terms</a> of use.
+              </p>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <div class="social-auth-links text-center mb-3">
+          <button type="submit" class="btn btn-block btn-secondary"> Register</button>
+        </div>
+      </form>
+      Already a member? <a href="{% url 'accounts:login' %}" class="text-center text-orange">Login</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="{% static 'registration/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'registration/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'registration/dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>

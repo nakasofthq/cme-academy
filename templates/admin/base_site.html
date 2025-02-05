@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | CME Admin{% endblock %}
+{% block extrastyle %}
+<style type="text/css">/*#00B2FF*/
+#header {
+	background-color: #ae4702; 
+	color: #fff;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #ae4702;
+}
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+}
+div.breadcrumbs {
+    background: #ff6600;
+    color: #fff;
+}
+a:link, a:visited {
+    color: #ae4702;
+}
+a:hover {
+    color: #ff6600;
+}
+.object-tools a:hover {
+	background-color: #ae4702;
+}
+
+.submit-row input[type=submit] {
+    background: #ae4702;
+}
+
+.submit-row input[type=submit]:hover {
+    background: #ff6600;
+}
+
+#header a:link, #header a:visited {
+    color: #eee;
+}
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">CME Admin</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+ 

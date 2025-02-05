@@ -1,0 +1,185 @@
+
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CME - Online Trading Academy</title>
+  <style>
+
+  </style>
+  <link rel="stylesheet" href="{% static 'sales_page/cme.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+
+
+<body>
+  <!-- Header Section -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav px-5">
+            <!-- ***** Logo Start ***** -->
+            <a href="https://joincme.com/" class="logo">
+              <h1>CME&nbsp;Academy</h1>
+            </a>
+            <ul class="nav">
+              <li><a class="" href="https://joincme.com/">Home</a></li>
+              <li><a class="active" href="https://joincme.com/plans/list/">CME Plans</a></li>
+              <li><a class="" href="https://joincme.com/affiliates/list/">Become CME Affiliate</a></li>
+              <li>
+                <a class="text-default" href="https://joincme.com/accounts/login/">Login</a>
+              </li>
+              <li>
+                <div class="main-button">
+                  <a class="text-orange" href="https://joincme.com/accounts/register/">Register</a>
+                </div>
+              </li>
+
+            </ul>
+            <a class='menu-trigger' onclick="toggleMenu()">
+              <span></span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="main-banner" id="top">
+  </div>
+
+  <!-- Explanation Section -->
+  <div class="stu">
+    <h3 class="join-stu">Join<span class="number-stu"> 200,000+</span> members taking healthy profits</h3>
+  </div>
+
+  <div class="aff-pa">
+    <h1 class="aff">Join the world's largest crypto community</h1>
+  </div>
+  <div class="com-pa">
+    <p class="com">A collaborative platform offering valuable information, expertise, and insights to empower digital
+      crypto traders.</p>
+    <p class="com2"> A dynamic collaborative platform dedicated to empowering digital crypto traders by providing a
+      wealth of valuable information, expert insights, and practical resources. Our goal is to help traders confidently
+      navigate the complexities of the cryptocurrency market, fostering a community where shared knowledge and
+      experience drive success.
+    </p>
+  </div>
+
+
+  <div class="father">
+    <div class="link">
+      <a class="dir first"
+        href="https://wa.me/+2348082843333?text=Hello Dtruth, I saw your video on TikTok. I am INTERESTED in learning Crypto from you. My name is">Join
+        the crypto Community</a>
+      <a class="dir second" href="https://www.instagram.com/dtruth_cme?igsh=NzU4Y25jdDhraWdr"> Instagram profile</a>
+      <a class="dir third" href="https://www.youtube.com/channel/UC1F6vwrmpMpYHi6NxLRXkxQ?sub_confirmation=1">Suscribe
+        to our Youtube</a>
+        <!-- <a class="dir fourth"
+        href="https://wa.me/+2348082843333?text=Hello Dtruth, I saw your video on TikTok. I am INTERESTED in 10 days FREE teaching from you.My name is">Join the 10 days Free class</a> -->
+    </div>
+  </div>
+
+  <div class="aff-pa">
+    <h1 class="aff2">What can you gain from being part of my crypto community?</h1>
+  </div>
+  <div class="com-pa">
+    <p class="com">The Crypto Network is built as a community resource where thousands of individuals in the digital
+      world of cryptocurrency can connect, communicate, and interact. With shared interests and a spirit of creativity,
+      our platform fosters an engaging and educational environment for its users.</p>
+    <p class="com2">The Crypto Network is a community-driven platform created to bring together thousands of individuals from the
+      rapidly growing world of cryptocurrency. It serves as a space for users to connect, share knowledge, collaborate,
+      and engage in meaningful discussions. With a focus on shared interests, innovation, and creativity, the platform
+      encourages users to explore the digital currency landscape while fostering an interactive and educational
+      environment that promotes growth, learning, and collaboration within the crypto community.</p>
+  </div>
+  <!-- Analysis-->
+  <div class="father1">
+    <div class="link1">
+      <a class="dir first1"
+  href="https://wa.me/+2348082843333?text=Hello Dtruth, I saw your video on TikTok. I am INTERESTED in learning Crypto from you. My name is">Join
+  the crypto Community</a>
+    </div>
+  </div>
+
+  <div class="parent-analysis">
+    <div class="Analysis">
+      <div class="Analysis-child">
+        <h1>
+          <i class="fa-solid fa-user-graduate"></i>
+          Training
+        </h1>
+        <p>We offer a lot of educational channels that teach you the in's and out's of the crypto space.</p>
+      </div>
+      <div class="Analysis-child">
+        <h1>
+          <i class="fa-solid fa-chart-line"></i>
+          Market Analysis
+        </h1>
+        <p>Our Community does extensive research in the Crypto space and share findings with our members</p>
+      </div>
+      <div class="father2">
+        <div class="link2">
+          <a class="dir first2"
+      href="https://wa.me/+2348082843333?text=Hello Dtruth, I saw your video on TikTok. I am INTERESTED in learning Crypto from you. My name is">Join
+      the Crypto Community</a>
+        </div>
+      </div>
+      <div class="Analysis-child">
+        <h1>
+          <i class="fa-solid fa-chart-simple"></i>
+          Market Follow-up
+        </h1>
+        <p>We track the Crypto Markets ourselves and keep our community updated about changes or important news.</p>
+      </div>
+      <div class="Analysis-child">
+        <h1>
+          <i class="fa-solid fa-chart-pie"></i>
+          Fundamental Analysis
+        </h1>
+        <p>we offer an in-depth fundamental analysis about the projects we believe in and provide this to our members
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analysis-->
+  <div class="father1">
+    <div class="link1 mb-0 pb-0">
+      <a class="dir second uppercase text-red-700" href="/">Visit our website</a>
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <footer class="section mt-12">
+    <div class="container">
+      <div class="col-lg-12">
+        <p class="text-sm">©
+          <script>document.write(new Date().getFullYear());</script>
+          CME Academy &nbsp;|&nbsp;
+          <span class="small">
+            <a href="https://joincme.com/terms/" rel="nofollow">Terms</a>
+            &nbsp;|&nbsp;
+            <a href="https://joincme.com/privacy/" rel="nofollow">Policy</a>
+            &nbsp;|&nbsp;
+            <a href="https://joincme.com/disclaimer/" rel="nofollow">Disclaimer</a>
+          </span>
+          <br><br>
+          Design&nbsp;by&nbsp;<a href="https://www.nakasoft.net" rel="nofollow" target="_blank">Nakasoft</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

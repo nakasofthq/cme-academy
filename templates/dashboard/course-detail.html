@@ -1,0 +1,128 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+{% load embed_video_tags %}
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-10">
+        <h3>Course View</h3>
+        <p class="text-dark lead">View the course in detail</p>
+        <div class="my-4">
+          <div class="list-group mb-4 shadow">
+            <div class="list-group-item pt-4">
+              <div class="row my-4 align-items-center">
+                <div class="col-md-12">
+                  <strong class="mb-4 h3">{{ object.title }}</strong>
+                  <p class="text-muted mt-2">{{ object.description|safe }}</p>
+                  {% if object.upload_file %}
+                    <button type="button" class="btn btn-orange" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fe fe-eye fe-20"></i> View Document</button>
+                    
+                    <br>
+                    {% comment %}
+                    <!-- {# <a class="btn btn-orange" href="{% url 'dashboard:course_pdf' slug=object.slug %}" target="__blank"><i class="fe fe-eye fe-16"></i> View Document</a> #} -->
+                    <!--{# <button type="button" class="btn mb-2 btn-orange" data-toggle="modal" data-target="#courseModal"><i class="fe fe-play fe-16"></i> Watch Video</button> #}-->
+                    {% endcomment %}
+                    <br><a class="btn btn-info" href="{{ object.upload_file.url }}" target="__blank"><i class="fe fe-download fe-16"></i> Download PDF</a>
+                  {% endif %}
+                  <!-- Modal -->
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="defaultModalLabel">{{ object.title }}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% if object.upload_file %}
+                            {% comment %}
+                            <!-- <object data="{{ object.upload_file.url }}" width="100%" height="500" type="application/pdf">
+                              <embed src="{{ object.upload_file.url }}" width="100%" height="500px" type="application/pdf">
+                            </object> -->
+                            <!-- {# <iframe content_type='application/pdf' src="{{ object.upload_file.url }}" frameBorder="0" scrolling="auto" height="500px" width="100%"></iframe> #} -->
+                            {% endcomment %}
+                            <iframe content_type='application/pdf' src="https://docs.google.com/viewer?url=https://joincme.com{{ object.upload_file.url }}&&embedded=true" frameborder="0" height="550px" width="100%"></iframe>
+                          {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                          <!-- <button type="button" class="btn mb-2 btn-primary">Save changes</button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% comment %}
+                {% if object.upload_file %}
+                <div class="row align-items-center">
+                  <div class="col-md-12">
+                    <object type="application/pdf" data="{{ object.upload_file.url }}" width="100%" height="500"></object>
+                  </div>
+                </div>
+                {% endif %}
+              {% endcomment %}
+
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                  <!-- {# options: tiny, small, medium, large, huge #} -->
+                  <!-- {# {% video object.video 'large' %} #} -->
+                  {% video object.video '100% x 520px' %}
+                </div>
+              </div>
+              
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endblock content %}
+
+
+
+
+
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <p class="card-title"><strong>Default Modal</strong></p>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Launch demo modal </button>
+        <!-- Modal -->
+        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui urna, cursus mollis cursus vitae, fringilla vel augue. In vitae dui ut ex fringilla consectetur. Sed vulputate ante arcu, non vehicula mauris porttitor quis. Praesent tempor varius orci sit amet sodales. Nullam feugiat condimentum posuere. Vivamus bibendum mattis mi, vitae placerat lorem sagittis nec. Proin ac magna iaculis, faucibus odio sit amet, volutpat felis. Proin eleifend suscipit eros, quis vulputate tellus condimentum eget. Maecenas eget dui velit. Aenean in maximus est, sit amet convallis tortor. In vel bibendum mauris, id rhoncus lectus. Suspendisse ullamcorper bibendum tellus a tincidunt. Donec feugiat dolor lectus, sed ullamcorper ante rutrum non. Mauris vestibulum, metus sit amet lobortis fringilla, dui est venenatis ligula, a euismod sem augue vel lorem. Nunc feugiat eget tortor vel tristique. Mauris lobortis efficitur ligula, et consectetur lectus maximus sed. </div>
+              <div class="modal-footer">
+                <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn mb-2 btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

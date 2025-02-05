@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+
+  <div class="container-fluid">
+      <div class="row mb-5 justify-content-center">
+        <div class="col-12 col-xl-8">
+          <form action="." method="POST">{% csrf_token %}
+            <h2 class="h2 mb-2 mt-4">Profile <span>update</span></h2>
+            <p class="mb-4">Your profile details</p>
+            <hr>
+            {% if form.non_field_errors %}
+              <div class="small text-danger"> {{ form.non_field_errors }}</div>
+            {% endif %}
+                              
+            {% for field in form %}
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="mb-0 mt-2">{{ field.label_tag }} {% if field.field.required %}<span class="text-danger">*</span>{% endif %}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="text-muted">{{ field.help_text|safe }}</small>
+                {% endif %}
+                <small class="text-danger">{{ field.errors }}</small>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            {% endfor %}
+
+            <div class="form-row my-4">
+              <div class="col">
+                  <button type="submit" class="btn btn-orange"> {% if submit_btn %}{{ submit_btn }}{% else %} Submit Form {% endif %}</button>
+              </div>
+              <div class="col-auto">
+                  <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div> 
+{% endblock content %}
+
+
+
+

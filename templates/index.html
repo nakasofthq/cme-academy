@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+  {% block content %}
+ 
+ 
+    
+    {% include 'inlines/header-home.html' %}
+
+
+
+
+    <div id="alertNavbar mt-5" style="color: #fff; background-color: #333; border-color: #333; font-size: 13px; border-radius: 0px; overflow: hidden; padding: 12px 0px 12px 0px;">
+      {% if data %}    
+        <ul id="alertList" class="list-unstyled d-flex">
+          {% for obj in data|slice:":20" %}
+            <li class="pl-4"><img src="{{ obj.image }}" height='18'></li> 
+            <li class="px-1">{{ obj.name }}</li>
+            <!-- {# <li class="pr-1">${{ obj.market_cap|floatformat:"2"|intcomma }};</li> #} -->
+            <li class="">${{ obj.current_price|intcomma }};</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <center class="text-secondary">No data yet</center>
+      {% endif %}
+    </div>
+
+
+
+
+
+
+    <div class="services section mt-5" id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'assets/images/service-01.png' %}" alt="online degrees">
+              </div>
+              <div class="main-content">
+                <h4>Trading Education</h4>
+                <p>We offer a lot of educational channels that teach you the in's and out's of the crypto space.</p>
+                <!-- <h4>Learn Anything</h4> -->
+                <!-- <p>Explore any interest or topic, take prerequisites, and advance your skills</p> -->
+                <div class="main-button">
+                  <!-- <a href="#">Read More</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'assets/images/service-02.png' %}" alt="short courses">
+              </div>
+              <div class="main-content">
+                <h4>Market Analysis</h4>
+                <p>Our community does extensive research in the crypto space and share their findings with our members.</p>
+                <!-- <h4>Flexible Learning</h4> -->
+                <!-- <p>Learn at your own pace, between multiple courses, or switch to a different course.</p> -->
+                <div class="main-button">
+                  <!-- <a href="#">Read More</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'assets/images/service-03.png' %}" alt="web experts">
+              </div>
+              <div class="main-content">
+                <h4>Scripts & Indicator Help</h4>
+                <p>There is a wide variety of indicators or scripts to be used and we try and help people understand them.</p>
+                <!-- <h4>Get Certified</h4> -->
+                <!-- <p>Earn a certificate for every learning program that you complete at no extra cost.</p> -->
+                <div class="main-button">
+                  <!-- <a href="#">Read More</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+    <!-- <h4>Market Follow-Up</h4>
+    <p>We track the cryptomarkets ourselves and keep our community updated about changes or important news.</p> -->
+    
+    <!-- <h4>Fundamental Analysis</h4>
+    <p>We offer an in-depth fundamental analysis about the projects we believe in and provide this to our members.</p> -->
+    
+    <!-- <h4>Blockchain Research</h4>
+    <p>We offer a place where people can have discussions about currencies or progress on the a specific blockchain.</p> -->
+    {% endcomment %}
+
+
+    {% include 'inlines/about.html' %}
+
+
+
+    <!-- {# {% include 'inlines/courses.html' %} #} -->
+    
+
+    
+    {% include 'inlines/counter.html' %}
+    
+ 
+
+    {% include 'inlines/testimonials.html' %}
+
+
+    <!-- {# {% include 'inlines/events.html' %} #} -->
+    
+
+    <!-- {# {% include 'inlines/contact.html' %} #} -->
+    
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+
+
+

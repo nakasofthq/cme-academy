@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-12 col-xl-12">
+        <h3 class="h3">Messages</h3>
+        <p class="text-dark lead">You have (0) messages.</p>
+        <div class="my-4">
+
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endblock content %}
+
+
+

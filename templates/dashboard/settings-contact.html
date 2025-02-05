@@ -1,0 +1,118 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+
+
+{% comment %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h3>Contact Us</h3>
+        <p class="lead text-dark">Feel free to contact us anytime</p>
+        <div class="card-deck my-4">
+          <div class="card col-sm-6 mb-4 shadow">
+            <div class="card-body my-4">
+              <h3 class="h5 text-orange my-4">Contact Support</h3>
+              <p class="mb-4">We introduce people to the world of trading crypto through our non-drowsy educational content and tools. We're also a community of traders that support each other on our daily trading journey.</p>
+              <p class=""><span class="text-dark font-weight-bold text-uppercase">Phone:</span> +234-803-111-2222</p>
+              <p class=""><span class="text-dark font-weight-bold text-uppercase">Email:</span> support@joincme.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endcomment %}
+
+
+
+
+
+
+  <div class="container-fluid">
+      <div class="row mb-5 justify-content-center">
+        <div class="col-12 col-xl-8">
+          <form action="." method="POST">{% csrf_token %}
+            <hr class="my-4">
+            <h2 class="h2 mb-2 mt-4">Get in <span>touch</span></h2>
+            <p class="lead mb-4">Reach our help centre anytime, anywhere or everyday to get assistance using our services.</p>
+            <hr>
+            {% if form.non_field_errors %}
+              <div class="small text-danger"> {{ form.non_field_errors }}</div>
+            {% endif %}
+                              
+            {% for field in form %}
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="mb-0 mt-2">{{ field.label_tag }} {% if field.field.required %}<span class="text-danger">*</span>{% endif %}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="text-muted">{{ field.help_text|safe }}</small>
+                {% endif %}
+                <small class="text-danger">{{ field.errors }}</small>
+              </div>
+              <!-- /.form-group -->
+            </div>
+            {% endfor %}
+            <div class="form-row my-4">
+              <div class="col">
+                  <button type="submit" class="btn btn-orange"> {% if submit_btn %}{{ submit_btn }}{% else %} Submit Form {% endif %}</button>
+              </div>
+              <div class="col-auto">
+                  <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div> 
+{% endblock content %}
+
+
+
+            <form id="contact-form" method="POST" action="{% url 'contact:contact' %}">{% csrf_token %}
+              <div class="row">
+                <div class="col-lg-12">
+                  <fieldset class="mb-4">
+                    <input type="text" name="fullname" id="fullname" value="{{ fullname }}" placeholder="Full name" autocomplete="on" required>
+                    <span class="small text-white"><i>{{ c_form.fullname.errors }}</i></span>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset class="mb-4">
+                    <input type="text" name="phone" id="phone" value="{{ phone }}" pattern="+234" placeholder="Phone number" required="">
+                    <span class="small text-white"><i>{{ c_form.phone.errors }}</i></span>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset class="mb-4">
+                    <input type="text" name="email" id="email" value="{{ email }}" pattern="[^ @]*@[^ @]*" placeholder="E-mail address" required="">
+                    <span class="small text-white"><i>{{ c_form.email.errors }}</i></span>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset class="mb-4">
+                    <textarea name="message" id="message" placeholder="Your Message">{{ message }}</textarea>
+                    <span class="small text-white"><i>{{ c_form.message.errors }}</i></span>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset class="mb-4">
+                    <button type="submit" id="form-submit" class="orange-button">Send Message Now</button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>

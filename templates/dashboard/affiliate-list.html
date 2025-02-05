@@ -1,0 +1,103 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+
+
+
+
+
+{% block content %}
+  <div class="container-fluid">
+
+    {% if current_plan %}
+    <div class="row justify-content-center mb-4">
+      <div class="col-12">
+        <h3>Welcome Affiliate</h3>
+        <p class="lead text-dark">Grow Your Earnings Significantly</p>
+        <div class="card-deck my-4">
+          <div class="card col-sm-6 mb-4 shadow">
+            <div class="card-body my-4">
+              <h3 class="h5 text-orange my-4">Your Affiliate Details:</h3>
+              <p class="text-muted lead"><span class="font-weight-bold">Referer Code:</span> &nbsp; <span class="text-primary">{{ current_plan.referer_code }}</span></p>
+              <p class="text-muted lead">
+                <span class="font-weight-bold">Referer Link:</span> &nbsp; 
+                <input type="text" class="form-control" value="www.joincme.com/accounts/register/?ref={{ current_plan.referer_code }}" id="myInput" disabled> 
+                <button class="btn btn-sm btn-secondary my-2" onclick="myFunction()">Copy link</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h3>Become an Affiliate</h3>
+        <!-- <p class="lead text-dark">Grow Your Earnings Significantly</p> -->
+        <p class="lead text-dark">Get access to the biggest network of digital product creators and earn money when you recommend their products to your audience.</p>
+        <div class="card-deck my-4">
+          {% for object in object_list %}
+          <div class="card col-sm-6 mb-4 shadow">
+            <div class="card-body text-center my-4">
+              <h3 class="h5 text-orange my-4">Affiliate Network</h3>
+              <p class="text-muted">This plan offers more. A plan that gives you access to the biggest network of traders, and sets you up for financial independence.</p>
+              <span class="h1 mb-0">&#8358;{{ object.price|floatformat:"0"|intcomma }}</span>
+              <p class="text-muted">per month</p>
+              <hr>
+              {% if object.title == current_plan.affiliate.slug %}
+              <span class="dot dot-lg bg-success"></span>
+              <span class="font-weight-bold text-uppercase ml-3">Active</span>
+              {% else %}
+              <form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="plan_type" value="{{ object.title }}">
+                <input type="hidden" name="plan_price" value="{{ object.price }}">
+                <input type="hidden" name="plan_duration" value="12"> 
+                <br>
+                <button type="submit" class="btn btn-orange btn-lg mb-2">Get 1-Year Plan</button>
+              </form>
+              {% endif %}
+            </div> <!-- .card-body -->
+          </div>
+          {% endfor %}
+          <!-- .card -->
+        </div> <!-- .card-group -->
+      </div> <!-- /.col -->
+    </div> <!-- .row -->
+  </div> 
+{% endblock content %}
+
+
+{% block script %}
+<script>
+function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Link Copied:   " + copyText.value);
+}
+</script>
+{% endblock script %}
+

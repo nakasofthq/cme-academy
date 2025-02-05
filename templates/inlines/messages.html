@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% if messages %}
+<div class="alert alert-warning alert-dismissible mt-2 text-center lead" style="color: #58594f; background-color: #f2dede; border-color: #ebccd1;">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <!-- <i class="icon fas fa-exclamation-triangle"></i> Alert!<br> -->
+  {% for message in messages %}
+    <span {% if message.tags %} class="{{ message.tags }}" {% endif %} >
+      {% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+    </span><br>
+  {% endfor %}
+</div>
+{% endif %}
+

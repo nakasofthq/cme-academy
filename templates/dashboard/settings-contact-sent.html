@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-10">
+        <h3>Message Sent</h3>
+        <div class="my-4">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <p class="h5 text-muted">Your message was sent successfully.</p>
+              <p class="text-mute">Thank you for contacting us, our support center will get back to you as soon as possible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+{% endblock content %}

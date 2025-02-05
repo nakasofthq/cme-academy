@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+  {% block css %}
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  {% endblock css %}
+
+  {% block content %}
+ 
+
+    {% include 'inlines/header-pages.html' %}
+
+
+
+		<div class="services section pricing" id="services">
+			<div class="container">
+        <div class="row text-center">
+          <div class="col-sm-6 offset-sm-3">
+            <div class="heading-section">
+            	<i class="fa fa-check-circle fa-5x text-success mb-3"></i>
+                <h2><span>Payment Successful</span></h2>
+                {% if message %}
+                <p class="lead text-dark"><span class="">{{ message }}</span> </p>
+								{% endif %}
+								<p class="lead py-2">Dear <span class="">{{ request.user.get_full_name }}</span></p>
+								<p class="lead py-2"><span class="font-weight-bold">Transaction Successful</span> </p>
+								<br>
+                <a href="{% url 'dashboard:home' %}" class="btn btn-lg btn-orange px-5"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+	
+
+
+
+
+	
+
+	

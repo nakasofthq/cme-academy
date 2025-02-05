@@ -1,0 +1,73 @@
+
+.text-orange{color:#fd7e14 !important}
+
+.btn-orange{color:#fff;background-color:#ff6113;border-color:#ff6113;box-shadow:none}.btn-orange:hover{color:#fff;background-color:#ff7733;border-color:#ff7733}.btn-orange.focus,.btn-orange:focus{color:#fff;background-color:#ff7733;border-color:#ff7733;box-shadow:none,0 0 0 0 rgba(38,143,255,.5)}.btn-orange.disabled,.btn-orange:disabled{color:#fff;background-color:#ff6113;border-color:#ff6113}.btn-orange:not(:disabled):not(.disabled).active,.btn-orange:not(:disabled):not(.disabled):active,.show>.btn-orange.dropdown-toggle{color:#fff;background-color:#ff7733;border-color:#ff7733}.btn-orange:not(:disabled):not(.disabled).active:focus,.btn-orange:not(:disabled):not(.disabled):active:focus,.show>.btn-orange.dropdown-toggle:focus{box-shadow:0 0 0 0 rgba(38,143,255,.5)}
+
+
+/*.section {
+  padding-top: 30px;
+  margin-top: 60px;
+}*/
+
+.text .section-heading p {
+  margin-bottom: 20px;
+}
+
+.text .section-heading h3 {
+  margin-bottom: 20px;
+}
+
+
+.text .section-heading h5 {
+  margin-bottom: 20px;
+}
+
+
+
+/*.header-area {
+  top: 70px;
+}
+
+@media (max-width: 767px) {
+  .header-area {
+      top: 30px;
+  }
+}*/
+
+
+.header-area .main-button a:hover {
+  background-color: #fff !important;
+  color: #ff6113 !important;
+}
+
+
+
+footer p {
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-weight: 400;
+  padding-top: 10px;
+}
+
+footer p a:hover {
+  color: #fff !important;
+}
+
+
+
+@media (max-width: 992px) {
+  .about-us {
+    margin-top: 150px;
+  }
+  .testimonials {
+    margin-top: 150px;
+  }
+  .contact-us {
+    margin-top: 150px;
+  }
+}
+
+
+
+

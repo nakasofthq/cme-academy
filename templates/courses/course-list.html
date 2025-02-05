@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+{% block css %}
+<style type="text/css">
+  .events_item .down-content {
+    padding: 20px 15px 20px 15px;
+  }
+  .events_item .down-content h4 {
+    font-size: 17px;
+    font-weight: 450;
+  }
+</style>
+{% endblock css %}
+
+
+  {% block content %}
+
+
+    {% include 'inlines/header-pages.html' %}
+
+    
+    <!-- {# {% include 'inlines/courses.html' %} #} -->
+
+    <section class="section courses mt-30" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Latest Courses</h6>
+            <h2>Latest Courses</h2>
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".Basic">Basic</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".Standard">Standard</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".Pro">Pro</a>
+        </li>
+      </ul>
+      <div class="row event_box">
+        {% for obj in course_list|slice:":6" %}
+        <div class="col-lg-3 col-md-4 align-self-center mb-30 event_outer {{ obj.program.title }}">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="{{ obj.get_object_url }}">{% if obj.get_image_url %}<img src="{{ obj.get_image_url }}" alt="">{% else %}<img src="{% static 'assets/images/course-00.jpg' %}" alt="">{% endif %}</a>
+              <!-- <span class="category">{{ obj.program.title }}</span> -->
+              <!-- <span class="price"><h6><em>&#8358;</em>{{ obj.price|intcomma }}</h6></span> -->
+            </div>
+            <div class="down-content" style="height: 100px;">
+              <a href="{{ obj.get_object_url }}">
+                <!-- <span class="author">Stella Blair</span> -->
+                <h4>{{ obj.title }}</h4>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+    {% include 'inlines/footer.html' %}
+
+
+  {% endblock content %}

@@ -1,0 +1,53 @@
+{% load static %}
+
+
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'home' %}" class="logo">
+                        <h1>CME&nbsp;Academy</h1>
+                    </a>
+                    <ul class="nav">
+                        <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+                        <!-- {#<li><a class="{% if '/about/' in request.path  %}active{% endif %}" href="{% url 'about' %}">About</a></li>#} -->
+                        <!-- {#{% if request.user.is_authenticated %}
+                        <li><a class="{% if '/courses/' in request.path  %}active{% endif %}" href="{% url 'courses:list' %}">Courses</a></li>
+                        {% endif %}#} -->
+                        <li><a class="{% if '/plans/' in request.path  %}active{% endif %}" href="{% url 'plans:list' %}">CME Plans</a></li>
+                        <li><a class="{% if '/affiliates/' in request.path  %}active{% endif %}" href="{% url 'affiliates:list' %}">Become CME Affiliate</a></li>
+                        <!-- {# <li><a class="{% if '/contact/' in request.path  %}active{% endif %}" href="{% url 'contact:contact' %}">Contact</a></li>  #} -->
+                        {% if request.user.is_authenticated %} 
+                        <li>
+                          <div class="main-button">
+                            <a class="text-primary" href="{% url 'dashboard:home' %}">Dashboard</a>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="main-button">
+                            <a class="text-danger" href="{% url 'accounts:logout' %}">Logout</a>
+                          </div>
+                        </li>
+                        {% else %}
+                        <li>
+                          <a class="text-default" href="{% url 'accounts:login' %}">Login</a>
+                        </li>
+                        <li>
+                          <div class="main-button">
+                            <a class="text-orange" href="{% url 'accounts:register' %}">Register</a>
+                          </div>
+                        </li>
+                        {% endif %}
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

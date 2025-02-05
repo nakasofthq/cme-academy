@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+
+  {% block content %}
+ 
+
+    {% include 'inlines/header-pages.html' %}
+
+
+      <div class="row text-center">
+        <div class="col-md-12 mt-5">
+            <div class="section-heading">
+                <h2><span>Contact Us</span></h2>
+                <!-- <p class="lead text-dark">Reach out to us and we’ll respond as soon as we can.</p> -->
+            </div>
+        </div>
+      </div>
+    
+    {% include 'inlines/contact.html' %}
+
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+
+
+

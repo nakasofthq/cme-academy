@@ -1,0 +1,138 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+{% block css %}
+  <style type="text/css">
+    li {
+      padding-bottom: 8px;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h3>Subscription</h3>
+        <p class="text-dark lead">Pick the right plan for you</p>
+        <div class="card-deck my-4">
+          {% for object in object_list %}
+          <div class="card mb-4 shadow">
+            <div class="card-body text-center my-4">
+              <h3 class="h5 text-orange mt-4 mb-4">{{ object.get_title_display }}</h3>
+              <!-- <p class="text-muted">package</p> -->
+              <span class="h1 mb-0">&#8358;{{ object.price|floatformat:"0"|intcomma }}</span>
+              <p class="text-muted mb-4">per month</p>
+              <hr>
+              {% if object.title == 'basic' %}
+              <ul class="list-unstyled text-left px-2">
+                <li><i class="fe fe-check fe-16"></i> Introduction</li>
+                <li><i class="fe fe-check fe-16"></i> Cryptocurrency and its history</li>
+                <li><i class="fe fe-check fe-16"></i> A to Z Crypto Terminology and Language</li>
+                <li><i class="fe fe-check fe-16"></i> Most Important to know</li>
+                <li><i class="fe fe-check fe-16"></i> The link for the creating of your ByBit account</li>
+                <li><i class="fe fe-check fe-16"></i> How to verify your ByBit account</li>
+                <li><i class="fe fe-check fe-16"></i> How to fund your ByBit account</li>
+                <li><i class="fe fe-check fe-16"></i> How to start trading Futures on ByBit</li>
+                <li><i class="fe fe-check fe-16"></i> How to withdraw from ByBit to your bank</li>
+                <li><i class="fe fe-check fe-16"></i> The link for the creating of your KuCoin account</li>
+                <li><i class="fe fe-check fe-16"></i> How to verify your KuCoin account</li>
+                <li><i class="fe fe-check fe-16"></i> How to fund your KuCoin account</li>
+                <li><i class="fe fe-check fe-16"></i> How to withdraw from KuCoin to your bank account</li>
+                <li><i class="fe fe-check fe-16"></i> How to send USDT from one exchange to another</li>
+                <li><i class="fe fe-star fe-16"></i> <span class="text-uppercase font-weight-bold">Bonus</span></li>
+                <li><i class="fe fe-check fe-16"></i> How not to loss your profit on Binance</li>
+                <li><i class="fe fe-check fe-16"></i> How to set profitable stop loss and take profit</li>
+                <li><i class="fe fe-check fe-16"></i> How to recover your losses when trading</li>
+              </ul>
+              {% elif object.title == 'advance' %}
+              <ul class="list-unstyled text-left px-2">
+                <li class="font-weight-bold text-dark"><i class="fe fe-check fe-16"></i> Everything in Basic +</li>
+                <!-- <hr> -->
+                <li><i class="fe fe-check fe-16"></i> Introduction to fundamental analysis</li>
+                <!-- <li><i class="fe fe-check fe-16"></i> What is fundamental analysis</li> -->
+                <li><i class="fe fe-check fe-16"></i> How to do fundamental analysis</li>
+                <li><i class="fe fe-check fe-16"></i> How to spot low cap coin</li>
+                <li><i class="fe fe-star fe-16"></i> <span class="text-uppercase font-weight-bold">Bonus</span></li>
+                <li><i class="fe fe-check fe-16"></i> Introduction to Shitcoin trader</li>
+                <li><i class="fe fe-check fe-16"></i> The bot link for Shitcoin trading</li>
+                <li><i class="fe fe-check fe-16"></i> How to set up your Shitcoin trading account</li>
+                <li><i class="fe fe-check fe-16"></i> How to fund your Shitcoin trading account</li>
+                <li><i class="fe fe-check fe-16"></i> How to buy Shitcoin</li>
+                <li><i class="fe fe-check fe-16"></i> How to sell your Shitcoin</li>
+              </ul>
+              {% elif object.title == 'pro' %}
+              <ul class="list-unstyled text-left px-2">
+                <li class="font-weight-bold text-dark"><i class="fe fe-check fe-16"></i> Everything in Basic +</li>
+                <li class="font-weight-bold text-dark"><i class="fe fe-check fe-16"></i> Everything in Standard +</li>
+                <!-- <hr> -->
+                <li><i class="fe fe-check fe-16"></i> Introduction to Technical Analysis</li>
+                <li><i class="fe fe-check fe-16"></i> How to setup and use trading views</li>
+                <li><i class="fe fe-check fe-16"></i> Candlestick Mastery</li>
+                <li><i class="fe fe-check fe-16"></i> Candlestick Holy Bible</li>
+                <li><i class="fe fe-check fe-16"></i> Introduce to trendline</li>
+                <li><i class="fe fe-check fe-16"></i> Support and resistance pattern</li>
+                <li><i class="fe fe-check fe-16"></i> How to analysis trendline</li>
+                <li><i class="fe fe-star fe-16"></i> <span class="text-uppercase font-weight-bold">Bonus</span></li>
+                <li><i class="fe fe-check fe-16"></i> Trade Fakeout strategy</li>
+                <li><i class="fe fe-check fe-16"></i> FVG strategy</li>
+                <li><i class="fe fe-check fe-16"></i> Life time signals group</li>
+                <li><i class="fe fe-check fe-16"></i> Life time support group</li>
+                <li><i class="fe fe-check fe-16"></i> Personal number</li>
+              </ul>
+              {% else %}
+              <ul class="list-unstyled text-left px-2">
+                <li><i class="fe fe-check fe-16"></i> Others</li>
+              </ul>
+              {% endif %}
+              <br>
+              {% if object.title == current_plan.slug %}
+              <span class="dot dot-lg bg-success"></span>
+              <span class="font-weight-bold text-uppercase ml-3">Active</span>
+              {% elif object.title == 'pro'  %}
+              <form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="plan_type" value="{{ object.title }}">
+                <input type="hidden" name="plan_price" value="{{ object.price }}">
+                <!-- <select class="" id="duration" name="duration"> -->
+                <select class="form-control text-center" name="plan_duration" required style="width: 100%;">
+                  <!-- <option class="text-default" value=><i>-- Select Duration --</i></option> -->
+                  <option value=12>Yearly</option>
+                </select>
+                <br>
+                <button type="submit" class="btn mb-2 btn-orange btn-lg">Select</button>
+              </form>
+              {% else %}
+              <form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="plan_type" value="{{ object.title }}">
+                <input type="hidden" name="plan_price" value="{{ object.price }}">
+                <!-- <select class="" id="duration" name="duration"> -->
+                <select class="form-control text-center" name="plan_duration" required style="width: 100%;">
+                  <option class="text-default" value=><i>-- Select Duration --</i></option>
+                  <option value=1>Monthly</option>
+                  <option value=3>Quarterly</option>
+                  <option value=6>Biannually</option>
+                  <option value=12>Yearly</option>
+                </select>
+                <br>
+                <button type="submit" class="btn mb-2 btn-orange btn-lg">Select</button>
+                <!-- <button type="submit" class="btn btn-block btn-sm btn-orange text-uppercase">Select</button> -->
+              </form>
+              {% endif %}
+            </div> <!-- .card-body -->
+          </div>
+          {% endfor %}
+          <!-- .card -->
+        </div> <!-- .card-group -->
+      </div> <!-- /.col -->
+    </div> <!-- .row -->
+  </div> 
+{% endblock content %}
+
+
+

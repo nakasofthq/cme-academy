@@ -1,0 +1,123 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+{% block css %}
+<!-- Icons CSS -->
+<link rel="stylesheet" href="{% static 'dashboard/css/feather.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/css/dataTables.bootstrap4.css' %}">
+<style type="text/css">
+  .table thead th {
+    color: #797979;
+  }
+  .table thead th {
+    font-weight: 600;
+  }
+</style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center mb-5">
+      <div class="col-12">
+        <h3 class="h3 page-title">Hello, <span>{{ request.user.get_full_name }}</span></h3>
+        <p class="card-text">Welcome to Crypto Made Easy (CME) dashboard</p>
+      </div>
+    </div>
+    {% comment %}
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="h4 page-title">Cryptocurrency Prices</h4>
+        <p class="card-text">View crypto prices and market caps, including Bitcoin, Ethereum, XRP, and more.</p>
+        <div class="row my-4">
+          <!-- Small table -->
+          <div class="col-md-12">
+            <div class="card shadow">
+              <div class="card-body">
+                <!-- table -->
+                <table class="table datatables" id="dataTable-1">
+                  <thead>
+                    <tr class="text-uppercase">
+                      <!-- <th></th> -->
+                      <th>Logo</th>
+                      <th>Name</th>
+                      <th>Rank</th>
+                      <th>Market cap</th>
+                      <th>Price</th>
+                      <!-- <th>Action</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if data %}
+                      {% for obj in data %}
+                      <tr>
+                        <!-- <td>
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label"></label>
+                          </div>
+                        </td> -->
+                        <td><img src="{{obj.image}}" height='40'></td>
+                        <td>{{obj.name}}</td>
+                        <td>{{obj.market_cap_rank}}</td>
+                        <td><span class="text-secondary">$</span>{{obj.market_cap|intcomma}}</td>
+                        <td><span class="text-secondary">$</span>{{obj.current_price|intcomma}}</td>
+                        <!-- <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="text-muted sr-only">Action</span>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Remove</a>
+                            <a class="dropdown-item" href="#">Assign</a>
+                          </div>
+                        </td> -->
+                      </tr>
+                      {% endfor %}
+                    {% else %}
+                      <h3>No data</h3>
+                    {% endif %}
+                  </tbody>
+                  <tfoot>
+                    <tr class="text-uppercase">
+                      <!-- <th></th> -->
+                      <th>Logo</th>
+                      <th>Name</th>
+                      <th>Rank</th>
+                      <th>Market cap</th>
+                      <th>Price</th>
+                      <!-- <th>Action</th> -->
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div> <!-- simple table -->
+        </div> <!-- end section -->
+      </div> <!-- .col-12 -->
+    </div> <!-- .row -->
+    {% endcomment %}
+
+    
+  </div> 
+{% endblock content %}
+
+
+{% block script %}
+  <script src="{% static 'dashboard/js/config.js' %}"></script>
+  <script src="{% static 'dashboard/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'dashboard/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script>
+    $('#dataTable-1').DataTable(
+    {
+      autoWidth: true,
+      "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+      ]
+    });
+  </script>
+{% endblock script %}

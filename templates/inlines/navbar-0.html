@@ -1,0 +1,48 @@
+{% load static %}
+
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="{% url 'home' %}" class="logo">
+                      <h1>CME&nbsp;Academy</h1>
+                  </a>
+                  <ul class="nav">
+                    <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                    <!-- <li class="scroll-to-section"><a href="#about">About</a></li> -->
+                    {% if request.user.is_authenticated %}
+                    <li class="scroll-to-section"><a class="{% if '/courses/' in request.path  %}active{% endif %}" href="{% url 'courses:list' %}">Courses</a></li>
+                    {% endif %}
+                    <li class="scroll-to-section"><a class="{% if '/plans/' in request.path  %}active{% endif %}" href="{% url 'plans:list' %}">CME Plans</a></li>
+                    <li class="scroll-to-section"><a class="{% if '/affiliates/' in request.path  %}active{% endif %}" href="{% url 'affiliates:list' %}">Become CME Affiliate</a></li>
+                    <li class="scroll-to-section"><a href="#contact">Contact</a></li>
+                    
+                    {% if request.user.is_authenticated %} 
+                    <li>                     
+                      <div class="main-button">
+                        <a class="text-orange" href="{% url 'accounts:logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                      </div>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="text-default" href="{% url 'accounts:login' %}"><i class="fa fa-sign-in"></i> Login</a>
+                    </li>
+                    <li>
+                      <div class="main-button">
+                        <a class="text-dark" href="{% url 'accounts:register' %}">Register</a>
+                      </div>
+                    </li>
+                    {% endif %}
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+  <section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Latest Courses</h6>
+            <h2>Latest Courses</h2>
+          </div>
+        </div>
+      </div>
+     <!--  <ul class="event_filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".design">Webdesign</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".development">Development</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".wordpress">Wordpress</a>
+        </li>
+      </ul> -->
+      <div class="row event_box">
+
+        {% for obj in course_list|slice:":6" %}
+        <div class="col-lg-4 col-md-6 align-self-center event_outer col-md-6 design">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="{{ obj.get_absolute_url }}">{% if obj.get_image_url %}<img src="{{ obj.get_image_url }}" alt="">{% else %}<img src="{% static 'assets/images/course-00.jpg' %}" alt="">{% endif %}</a>
+              <span class="category">{{ obj.get_grade_display }}</span>
+              <!-- <span class="price"><h6><em>&#8358;</em>{{ obj.price|intcomma }}</h6></span> -->
+            </div>
+            <div class="down-content" style="height: 100px;">
+              <a href="{{ obj.get_absolute_url }}">
+                <!-- <span class="author">Stella Blair</span> -->
+                <h4>{{ obj.title }}</h4>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+

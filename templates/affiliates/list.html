@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+
+
+
+
+  {% block content %}
+ 
+
+
+    {% include 'inlines/header-pages.html' %}
+
+
+
+
+		<div class="services section pricing pb-5 mb-5" id="services">
+			<div class="container">
+        <div class="row text-center">
+          <div class="col-md-8 offset-md-2">
+              <div class="section-heading">
+                  <h2><span>Become an Affiliate,<br>Grow Your Earnings Significantly </span></h2>
+                  <p class="lead text-dark">Get access to the biggest network of digital product creators and earn money when you recommend their products to your audience. </p>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+					<!-- Basic Tier -->
+					<div class="col-lg-4 col-md-4 offset-md-4 py-2">
+						<div class="card mb-5 pb-4">
+							<div class="card-body">
+								<h5 class="card-title text-uppercase text-center text-orange font-weight-bold py-3">Affiliate Network</h5><br>
+								<p class="card-text">This plan offers more. A plan that gives you access to the biggest network of traders, and sets you up for financial independence. </p>
+								<hr>
+								<h6 class="card-price text-center text-dark">&#8358;{{ object.price|intcomma }}<span class="period">/month</span></h6><br>
+								{% if object.title == current_plan.slug %}
+									<center class="small text-success text-uppercase">Your current plan</center>
+								{% else %}
+								<form method="POST" action="{% url 'payments:payment_initiate' %}">{% csrf_token %}
+									<input type="hidden" name="category" value="{{ category }}">
+									<input type="hidden" name="plan_type" value="{{ object.title }}">
+									<input type="hidden" name="plan_price" value="{{ object.price }}">
+									<input type="hidden" name="plan_duration" value="12"> <!-- {# #} -->
+									<!-- <select class="form-control text-center" name="plan_duration" required style="width: 100%;">
+										<option value=1>Monthly</option>
+										<option value=3>Quarterly</option>
+										<option value=6>Bianually</option>
+										<option value=12>Yearly</option>
+									</select> -->
+									<br>
+									<button type="submit" class="btn btn-block btn-sm btn-orange text-uppercase">Get 1-Year Plan</button>
+								</form>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+        </div>
+			</div>
+		</div>
+
+
+
+    
+    {% include 'inlines/about-affiliate.html' %}
+
+
+    {% include 'inlines/footer.html' %}
+
+
+
+  {% endblock content %}
+	
+
+
+	
