@@ -36,7 +36,7 @@ if not settings.DEBUG:
 
     ADMINS = (
         # ("Nakasoft Support", "support@nakasoft.net"),
-        ("Nakasoft Support", "support@nakasoft.net"),
+        ("Nakasoft Support", "support@nakasoft.com"),
     )
 
 
@@ -46,12 +46,12 @@ if not settings.DEBUG:
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.zoho.com' #'box.nakamail.com' #'smtp.gmail.com'
-    EMAIL_HOST_USER = 'noreply@nakasoft.net' #'lynton101@gmail.com'
+    EMAIL_HOST_USER = 'cme_noreply@nakasoft.com' #'lynton101@gmail.com'
     EMAIL_HOST_PASSWORD = 'Naka50ft@69' #'ikechukwu69'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-    SERVER_EMAIL = 'support@nakasoft.net'
+    SERVER_EMAIL = 'support@nakasoft.com'
 
 
 
